@@ -18,7 +18,7 @@ for (let TLD of TLDs) {
   let txt = await resolver.resolveTxt("_psl."+TLD);
   newList.push(TLD);
   } catch {
-    console.log("ERROR: "+tld);
+    console.log("ERROR: "+TLD);
   } 
 }
 
