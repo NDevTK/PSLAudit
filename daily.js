@@ -4,6 +4,9 @@ const { Resolver } = require('dns').promises;
 const resolver = new Resolver();
 resolver.setServers(['1.1.1.1', '8.8.8.8']);
 
+
+
+async function main() {
 const response = await fetch('https://raw.githubusercontent.com/publicsuffix/list/master/public_suffix_list.dat');
 const body = await response.text();
 const TLDs = body.trim().split("\n").filter(line => !line.startsWith("//") && line !== "");
@@ -20,3 +23,4 @@ for (let TLD of TLDs) {
 }
 
 console.log(newList);
+}
