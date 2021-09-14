@@ -27,9 +27,9 @@ jobs:
           node-version: '14'
 
     # Runs a single command using the runners shell
-    - name: Getting check-domain
+    - name: Getting check-domain node-fetch
       run: |
-        npm install check-domain
+        npm install check-domain node-fetch
         npm update
     - name: daily
       run: node daily.js
