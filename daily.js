@@ -1,8 +1,4 @@
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-
-const { Resolver } = require('dns').promises;
-const resolver = new Resolver();
-resolver.setServers(['1.1.1.1', '8.8.8.8']);
+var checkDomain = require("check-domain");
 
 checker();
 
@@ -11,16 +7,11 @@ const response = await fetch('https://raw.githubusercontent.com/publicsuffix/lis
 const body = await response.text();
 const TLDs = body.trim().split("\n").filter(line => !line.startsWith("//") && line !== "");
 
-var newList = [];
-
 for (let TLD of TLDs) {
-  try {
-  let txt = await resolver.resolveTxt("_psl."+TLD);
-  newList.push(TLD);
-  } catch {
-    console.log("ERROR: "+TLD);
-  } 
+  checkDomain({domain: TLD.replace("*.", "")}, result => {
+    if (result.isAvailable) console.log(result);
+  });
 }
 
-console.log(newList);
+
 }
