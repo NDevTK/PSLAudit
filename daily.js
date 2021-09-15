@@ -1,6 +1,6 @@
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const fs = require('fs');
-var whois = require('whois')
+import whois from 'whois-api';
 
 updateList();
 
@@ -13,7 +13,6 @@ var contents = "";
 
 for (let TLD of TLDs) {
   whois.lookup(TLD.replace("*.", ""), function(err, data) {
-	console.log(err);
 	if (err) contents += "\n"+TLD;
   });
 }
