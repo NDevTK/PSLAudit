@@ -1,6 +1,6 @@
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const whois = (...args) => import('whois-api').then(({default: whois}) => whois(...args));
 const fs = require('fs');
-import whois from 'whois-api';
 
 updateList();
 
