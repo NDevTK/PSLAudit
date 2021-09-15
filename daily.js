@@ -1,5 +1,5 @@
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-var checkDomain = require("check-domain");
+var whois = require('whois')
 
 checker();
 
@@ -9,8 +9,8 @@ const body = await response.text();
 const TLDs = body.trim().split("\n").filter(line => !line.startsWith("//") && line !== "");
 
 for (let TLD of TLDs) {
-  checkDomain({domain: TLD.replace("*.", "")}, result => {
-    if (result.isAvailable) console.log(result);
+  whois.lookup(TLD.replace("*.", ""), function(err, data) {
+	console.log(data)
   });
 }
 
