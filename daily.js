@@ -13,7 +13,8 @@ var contents = "";
 
 for (let TLD of TLDs) {
   whois.lookup(TLD.replace("*.", ""), function(err, data) {
-	if (JSON.stringify(data).includes("%ERROR:101")) contents += "\n"+TLD;
+	console.log(err);
+	if (err) contents += "\n"+TLD;
   });
 }
 fs.writeFileSync('invalid', contents);
