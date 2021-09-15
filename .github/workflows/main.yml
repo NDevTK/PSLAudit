@@ -25,9 +25,9 @@ jobs:
           node-version: '14'
 
     # Runs a single command using the runners shell
-    - name: Getting whois node-fetch
+    - name: Getting whois-api node-fetch
       run: |
-        npm install whois node-fetch
+        npm install whois-api node-fetch
         npm update
     - name: daily
       run: node daily.js
